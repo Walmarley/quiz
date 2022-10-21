@@ -23,7 +23,7 @@ Route::group([], function(){
     Route::post('/store', [UserController::class, 'store']); //Registrar User
     Route::post('/loginUser', [UserController::class, 'loginUser']); //Loga
     Route::delete('/destroy/{id}', [UserController::class, 'destroy']); //apagar ususario
-    Route::middleware('auth:sanctum')->get('/index', [UserController::class, 'index']);
+    Route::get('/index', [UserController::class, 'index']);
 });
 
 // Route::resource('/quiz',[UserController::class, function()]);
