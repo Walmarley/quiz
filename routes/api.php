@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'users'], function(){
     Route::post('/store', [UserController::class, 'store']); //Registrar User
     Route::delete('/destroy/{id}', [UserController::class, 'destroy']); //apagar ususario
-    Route::get('/index', [UserController::class, 'index']); //listar todos User
+    Route::middleware('auth:sanctum')->get('/index', [UserController::class, 'index']); //listar todos User
     Route::post('/update/{id}', [UserController::class, 'update']); //atualizar
     Route::get('/show/{id}', [UserController::class, 'show']); //listar um User
 });
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'questions'], function(){
     Route::get('/index', [QuestionsController::class, 'index']); //listar todas questoes
     Route::post('/store', [QuestionsController::class, 'store']); //add
     Route::get('/show/{id}', [QuestionsController::class, 'show']); //listar 1
-    Route::post('/validaQuest/{id}/{resposta}', [QuestionsController::class, 'validaQuest']); //validar resposta
+    Route::get('/validaQuest/{id}/{resposta}', [QuestionsController::class, 'validaQuest']); //validar resposta
     Route::delete('/destroy/{id}', [QuestionsController::class, 'destroy']); //apagar questão
     Route::get('/listadez', [QuestionsController::class, 'listaDezQuestoes']); //listar todas questoes
 });

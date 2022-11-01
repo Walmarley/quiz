@@ -50,7 +50,7 @@ class QuestionsController extends Controller
     public function validaQuest($id, $resposta) //recebe o ID e a resposta do usuario
     {
         $question = Questions::find($id);
-        $user = Auth::user();
+        Auth::user();
 
 
         if (!$question) {
@@ -68,8 +68,18 @@ class QuestionsController extends Controller
 
         // echo '<pre>';
         // print_r($questions->correctOption); return 0;
-        $certos = Answer::where('user_id', $user->id)->where('hit',1)->count();
+        $acertos = Answer::where('user_id', $user->id)->where('hit',1)->count();
         $erros = Answer::where('user_id', $user->id)->where('hit',0)->count();
+
+        return response()->json(['acertos' => $acertos, 'erros' => $erros], 200);
+    }
+
+    public function contAcerto(){
+
+    }
+
+    public function contErros(){
+
     }
 
 
@@ -84,7 +94,7 @@ class QuestionsController extends Controller
 
         $questions->delete();
 
-        return response()->json(['success' => 'questão apagada', 200]);
+        return response()->json(['success' => 'questão apagada'], 200);
     }
 
     public function listaDezQuestoes()

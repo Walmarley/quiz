@@ -59,7 +59,8 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        // $logged = Auth::user();
+        $logged = Auth::user();
+
 
         $user = User::find($id);
 
@@ -69,7 +70,7 @@ class UserController extends Controller
 
         $user->delete();
 
-        return response()->json(['success' => 'true', 200]);
+        return response()->json(['success' => 'true'], 200);
     }
 
 }
