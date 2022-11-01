@@ -10,30 +10,6 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
-    public function loginUser(Request $request)
-    {
-        $logar = $request->only('email', 'password');
-
-        $validator = Validator::make($logar, [
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-        ]);
-
-        if($validator->fails())
-        {
-            return response()->json(['success' => false, $validator->messages()], 400);
-        }
-
-        // $logged = User::whereEmail($request->email)->wherePassword($request->password)->exists();
-        $logged = Auth::attempt($logar);
-
-        if(!$logged){
-            return response()->json(['success' => false, 'Senha ou email errado'], 402);
-        }
-
-        return response()->json(['sucess' => true], 200);
-    }
-    
     public function index()
     {
         $users = User::all();
@@ -57,6 +33,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = [
+            'admin' => $request->admin,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
@@ -64,6 +41,19 @@ class UserController extends Controller
 
         $user = User::create($data);
         return response()->json(['success'=> 'true'], 201);
+    }
+
+    public function update(Request $request, $id){
+
+        $user = User::find($id);
+
+        $user->admin = $request->input('admin');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+
+        $user->save();
+            return response()->json(['success' => true, 'message' => 'usuario ' . $user->name . ' atualizado com sucesso!'], 202);
     }
 
 
@@ -74,7 +64,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if(!$user){
-            return response()->json(['erro' => 'Ususario não encontrado']);
+            return response()->json(['erro' => true, 'Ususario não encontrado']);
         }
 
         $user->delete();

@@ -34,25 +34,25 @@ class RolerSeeder extends Seeder
         // $role = Role::create(['name' => 'admins']);
         // $role->syncPermissions($permissions);
 
-        // $role = Role::create(['name' => 'admins']);
-        // $role->syncPermissions([
-        //     'view_users',
-        //     'add_users',
-        //     'edit_users',
-        //     'delete_users',
+        $role = Role::create(['name' => 'admins']);
+        $role->syncPermissions([
+            'view_users',
+            'add_users',
+            'edit_users',
+            'delete_users',
 
-        //     'view_admins',
-        //     'add_admins',
-        //     'delete_admins',
-        //     'edit_admins'
-        // ]);
+            'view_admins',
+            'add_admins',
+            'delete_admins',
+            'edit_admins'
+        ]);
 
-        // $role = Role::create(['name' => 'user']);
-        // $role->syncPermissions([
-        //     'view_users',
-        //     'add_users',
-        //     'edit_users',
-        //     'delete_users',
-        // ]);
+        $role = Role::create(['name' => 'user']);
+        $role->syncPermissions([
+            'view_users',
+            'add_users',
+            'edit_users',
+            'delete_users',
+        ]);
     }
 }

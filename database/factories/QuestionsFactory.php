@@ -16,12 +16,16 @@ class QuestionsFactory extends Factory
      */
     public function definition()
     {
+        $var_options = ['a','b','c','d'];
+
         return [
             'quest' => fake()->sentence(),
-            'correrct' => fake()->name(),
-            'wrong2' => fake()->randomNumber(2, true),
-            'wrong3' => fake()->randomNumber(3, true),
-            'wrong4' => fake()->randomNumber(4, true)
+            'correctOption' => $var_options[array_rand($var_options)],
+            'optionA' => fake()->name(),
+            'optionB' => fake()->name(),
+            'optionC' => fake()->name(),
+            'optionD' => fake()->name(),
+            'optionE' => fake()->name(),
         ];
     }
 }
