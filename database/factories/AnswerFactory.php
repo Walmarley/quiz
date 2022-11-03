@@ -21,7 +21,7 @@ class AnswerFactory extends Factory
         return [
             'user_id' => fake()->randomDigit(),
             'question_id' => fake()->randomDigit(),
-            'reposta' => $var_options[array_rand($var_options)],
+            'resposta' => $var_options[array_rand($var_options)],
             'hit' => fake()->boolean,
         ];
     }

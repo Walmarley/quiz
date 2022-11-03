@@ -50,7 +50,7 @@ class QuestionsController extends Controller
     public function validaQuest($id, $resposta) //recebe o ID e a resposta do usuario
     {
         $question = Questions::find($id);
-        Auth::user();
+        $user = Auth::user();
 
 
         if (!$question) {

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
             $table->bigInteger('user_id');
             $table->bigInteger('question_id');
-            $table->string('reposta');
+            $table->string('resposta');
             $table->boolean('hit');
         });
     }
